@@ -1,6 +1,6 @@
 # 🧩 Desafio - CRUD em React
 
-Este projeto é uma aplicação CRUD (Create, Read, Update, Delete) Desenvolvido com **React** e **TypeScript**, com foco em autenticação, rotas protegidas e testes automatizados utilizando Jest.
+Este projeto é uma aplicação **CRUD** (Create, Read, Update, Delete) desenvolvida com **React** e **TypeScript**, com foco em autenticação, rotas protegidas e testes automatizados utilizando **Jest**.
 
 ---
 
@@ -8,11 +8,11 @@ Este projeto é uma aplicação CRUD (Create, Read, Update, Delete) Desenvolvido
 
 A aplicação permite:
 
-- Login do usuário
-- Criação, visualização, edição e exclusão de produtos
+- Login de usuário
+- Cadastro, listagem, edição e exclusão de produtos
 - Rotas protegidas por autenticação
-- Validação de formulários com Zod e React Hook Form
-- Testes com Jest e React Testing Library
+- Validação de formulários com **Zod** e **React Hook Form**
+- Testes com **Jest** e **React Testing Library**
 
 ---
 
@@ -23,126 +23,187 @@ A aplicação permite:
 - React Hook Form + Zod
 - Jest + React Testing Library
 - SCSS
+- Axios
+- SweetAlert2
 
 ---
 
 ## ⚙️ Instalação e Execução
 
-### Pré-requisitos
-
-- Node.js ^16
-- NPM ou Yarn
-
 ### Passos
 
 ```bash
-git clone https://github.com/seu-usuario/desafio-crud-em-react.git
+git clone https://github.com/JVictor5/Desafio-crud-em-react.git
 cd desafio-crud-em-react
 npm install
-npm run dev
+# ou
+yarn install
 ```
 
-Acesse: [http://localhost:3000](http://localhost:3000)
+A aplicação requer autenticação via e-mail e senha. O login deve ser feito na tela inicial da aplicação.
 
-### Rodar os testes
+### Executar Projeto e Testes
 
 ```bash
+# Iniciar a aplicação
+npm start
+# ou
+yarn start
 
-# rodar o teste dos componentes basta usar o comando abaixo
+# Executar testes
 npm test
-
+# ou
+yarn test
 ```
 
+A aplicação ficará disponível em **http://localhost:3000**.
+
 ---
+
+### Testes
+
+Os testes são direcionados aos componentes principais, com foco em uma única página onde sua execução é necessária.
 
 ## 📁 Estrutura do Projeto
 
 ```text
-src/
-├── components/               # Componentes reutilizáveis
-│   ├── auth-form/            # Formulários de autenticação (login)
-│   └── product-form/         # Formulário para criação e edição de produtos
+├── public/          # Arquivos públicos
+├── src/
+│   ├── components/               # Componentes reutilizáveis
+│   │   ├── auth-form/            # Formulário de autenticação (login)
+│   │   └── product-form/         # Formulário para criação e edição de produtos
+│   │
+│   ├── core/                     # Camada central da aplicação
+│   │   ├── api/                  # Comunicação com a API
+│   │   ├── protect/              # Proteção de rotas (ex: PrivateRoute)
+│   │   ├── service/              # Serviços (ex: authService, productService)
+│   │   └── validation/           # Schemas de validação com Zod
+│   │
+│   ├── layouts/                  # Componentes de layout
+│   │   ├── footer/               # Rodapé da aplicação
+│   │   └── navbar/               # Cabeçalho da aplicação
+│   │
+│   ├── pages/                    # Páginas principais
+│   │   ├── createProduct/        # Cadastro de produto
+│   │   ├── home/                 # Listagem de produtos
+│   │   ├── signin/               # Tela de login
+│   │   └── updateProduct/        # Edição de produto
+│   │
+│   ├── tests/                    # Testes automatizados
+│   │   ├── components/           # Testes dos componentes
+│   │   ├── mocks/                # Utilitários e mocks
+│   │   ├── pag/                  # Testes das páginas
+│   │   └── jest.setup.ts         # Setup do jest
+│   │
+│   ├── AppRoutes.tsx             # Definição das rotas
+│   ├── App.tsx                   # Componente raiz
+│   ├── index.tsx                 # Ponto de entrada da aplicação
+│   ├── app.scss                  # Estilos globais
+│   ├── app.scss                  # Estilos globais
 │
-├── core/                     # Camada de lógica da aplicação
-│   ├── api/                  # Comunicação com API
-│   ├── protect/              # Proteção de rotas (ex: PrivateRoute)
-│   ├── service/              # Serviços de domínio (ex: authService, productService)
-│   └── validation/           # Regras e schemas de validação
-│
-├── layouts/                  # Layouts reutilizáveis
-│   ├── footer/               # Rodapé da aplicação
-│   └── navbar/               # Barra de navegação
-│
-├── pages/                    # Páginas principais do sistema
-│   ├── createProduct/        # Página para cadastrar produto
-│   ├── home/                 # Página inicial
-│   ├── signin/               # Página de login
-│   └── updateProduct/        # Página para editar produto
-│
-├── tests/                    # Testes automatizados
-│   ├── components/           # Testes de componentes
-│   ├── mocks/                # Mocks e utilitários para testes
-│   └── pag/                  # Testes de páginas
-│
-├── AppRoutes.tsx             # Definição e gerenciamento das rotas
-├── App.tsx                   # Componente principal da aplicação
-├── index.tsx                 # Ponto de entrada (renderiza o App)
-├── app.scss                  # Estilos globais
+├── jest.config.ts   # Configuração do jest
+├── package.json     # Dependências e scripts
+├── README.md        # Documentação
 ```
 
 ---
 
-## 📄 Documentação dos Componentes
+# 📘 Documentação dos Componentes e Páginas
 
-## `AuthForm`
+## 🧱 Layouts
+
+---
+
+### 1. Header
+
+- **Responsabilidade:** Cabeçalho da aplicação.
+- **Comportamento:** Exibe o logotipo e o título "ProductManager".
+- **Propriedades:** Nenhuma.
+
+---
+
+### 2. Footer
+
+- **Responsabilidade:** Rodapé da aplicação.
+- **Comportamento:** Exibe os direitos autorais e o nome do desenvolvedor.
+- **Propriedades:** Nenhuma.
+
+---
+
+## 🧩 Componentes
+
+---
+
+### 3. AuthForm
 
 - **Responsabilidade:** Formulário de login.
-- **Props:**
-  - `onSubmit(data: SigninFormData)`: Callback disparado ao enviar o formulário.
-- **Validação:** Utiliza Zod para validar e-mail e senha obrigatórios.
+- **Propriedades:**
+  - `onSubmit(data: SigninFormData)`: Callback de envio.
+- **Validação:**
+  - Com `Zod` + `React Hook Form`.
+  - Campos obrigatórios: e-mail e senha.
 
 ---
 
-## `ProductForm`
+### 4. ProductForm
 
-- **Responsabilidade:** Cadastro e edição de produtos.
-- **Props:**
-  - `productData?`: Dados do produto para edição (opcional).
-  - `onSubmit(data: ProductFormData)`: Callback disparado ao enviar o formulário.
-- **Campos:** Nome, descrição, preço, status, quantidade em estoque.
-- **Validação:** Zod com React Hook Form.
-
----
-
-## `SignIn.tsx`
-
-- Renderiza o componente `AuthForm`.
-- Chama `signin()` (service) com os dados recebidos.
-- Redireciona para `/` após login bem-sucedido.
+- **Responsabilidade:** Cadastro/edição de produtos.
+- **Propriedades:**
+  - `productData?`: Dados existentes do produto.
+  - `onSubmit(data: ProductFormData)`: Callback de envio.
+- **Validação:**
+  - Zod + React Hook Form.
+- **Campos:**
+  - Nome, descrição, preço, status, quantidade em estoque.
 
 ---
 
-## `Home.tsx`
-
-- Exibe a listagem de produtos utilizando `getAll()`.
-- Ações disponíveis:
-  - Login/logout.
-  - Cadastro de novo produto.
-  - Edição e exclusão de produtos (com confirmação via SweetAlert2).
+## 📄 Páginas
 
 ---
 
-## `CreateProduct.tsx`
+### 1. SignIn.tsx
 
-- Renderiza o componente `ProductForm`.
-- Envia os dados usando `createProduct(data)`.
+- **Responsabilidade:** Tela de login.
+- **Comportamento:**
+  - Renderiza `AuthForm`.
+  - Chama `signin()` com os dados.
+  - Redireciona para `/` em caso de sucesso.
+
+---
+
+### 2. Home.tsx
+
+- **Responsabilidade:** Página inicial.
+- **Funcionalidades:**
+  - Carrega produtos com `getAll()`.
+  - Permite:
+    - Login/logout
+    - Cadastrar, editar e excluir produtos
+    - Confirmações com **SweetAlert2**
 
 ---
 
-## `UpdateProduct.tsx`
+### 3. CreateProduct.tsx
 
-- Busca o produto pelo ID com `getProduct(id)`.
-- Renderiza `ProductForm` com os dados preenchidos.
-- Atualiza o produto via `updateProduct(data)`.
+- **Responsabilidade:** Cadastro de produto.
+- **Comportamento:**
+  - Renderiza `ProductForm`.
+  - Chama `createProduct(data)`.
 
 ---
+
+### 4. UpdateProduct.tsx
+
+- **Responsabilidade:** Edição de produto.
+- **Comportamento:**
+  - Busca produto com `getProduct(id)`.
+  - Renderiza `ProductForm` preenchido.
+  - Chama `updateProduct(data)`.
+
+---
+
+## 📌 Observações
+
+- Estrutura modularizada para facilitar a manutenção e reuso.
+- Validações robustas com foco em experiência do usuário e integridade de dados.
