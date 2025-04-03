@@ -1,46 +1,148 @@
-# Getting Started with Create React App
+# 🧩 Desafio - CRUD em React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação CRUD (Create, Read, Update, Delete) Desenvolvido com **React** e **TypeScript**, com foco em autenticação, rotas protegidas e testes automatizados utilizando Jest.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 Descrição
 
-### `npm start`
+A aplicação permite:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Login do usuário
+- Criação, visualização, edição e exclusão de produtos
+- Rotas protegidas por autenticação
+- Validação de formulários com Zod e React Hook Form
+- Testes com Jest e React Testing Library
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 🚀 Tecnologias Utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React + TypeScript
+- React Router DOM
+- React Hook Form + Zod
+- Jest + React Testing Library
+- SCSS
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚙️ Instalação e Execução
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pré-requisitos
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js ^16
+- NPM ou Yarn
 
-### `npm run eject`
+### Passos
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+git clone https://github.com/seu-usuario/desafio-crud-em-react.git
+cd desafio-crud-em-react
+npm install
+npm run dev
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Acesse: [http://localhost:3000](http://localhost:3000)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Rodar os testes
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
 
-## Learn More
+# rodar o teste dos componentes basta usar o comando abaixo
+npm test
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## 📁 Estrutura do Projeto
+
+```text
+src/
+├── components/               # Componentes reutilizáveis
+│   ├── auth-form/            # Formulários de autenticação (login)
+│   └── product-form/         # Formulário para criação e edição de produtos
+│
+├── core/                     # Camada de lógica da aplicação
+│   ├── api/                  # Comunicação com API
+│   ├── protect/              # Proteção de rotas (ex: PrivateRoute)
+│   ├── service/              # Serviços de domínio (ex: authService, productService)
+│   └── validation/           # Regras e schemas de validação
+│
+├── layouts/                  # Layouts reutilizáveis
+│   ├── footer/               # Rodapé da aplicação
+│   └── navbar/               # Barra de navegação
+│
+├── pages/                    # Páginas principais do sistema
+│   ├── createProduct/        # Página para cadastrar produto
+│   ├── home/                 # Página inicial
+│   ├── signin/               # Página de login
+│   └── updateProduct/        # Página para editar produto
+│
+├── tests/                    # Testes automatizados
+│   ├── components/           # Testes de componentes
+│   ├── mocks/                # Mocks e utilitários para testes
+│   └── pag/                  # Testes de páginas
+│
+├── AppRoutes.tsx             # Definição e gerenciamento das rotas
+├── App.tsx                   # Componente principal da aplicação
+├── index.tsx                 # Ponto de entrada (renderiza o App)
+├── app.scss                  # Estilos globais
+```
+
+---
+
+## 📄 Documentação dos Componentes
+
+## `AuthForm`
+
+- **Responsabilidade:** Formulário de login.
+- **Props:**
+  - `onSubmit(data: SigninFormData)`: Callback disparado ao enviar o formulário.
+- **Validação:** Utiliza Zod para validar e-mail e senha obrigatórios.
+
+---
+
+## `ProductForm`
+
+- **Responsabilidade:** Cadastro e edição de produtos.
+- **Props:**
+  - `productData?`: Dados do produto para edição (opcional).
+  - `onSubmit(data: ProductFormData)`: Callback disparado ao enviar o formulário.
+- **Campos:** Nome, descrição, preço, status, quantidade em estoque.
+- **Validação:** Zod com React Hook Form.
+
+---
+
+## `SignIn.tsx`
+
+- Renderiza o componente `AuthForm`.
+- Chama `signin()` (service) com os dados recebidos.
+- Redireciona para `/` após login bem-sucedido.
+
+---
+
+## `Home.tsx`
+
+- Exibe a listagem de produtos utilizando `getAll()`.
+- Ações disponíveis:
+  - Login/logout.
+  - Cadastro de novo produto.
+  - Edição e exclusão de produtos (com confirmação via SweetAlert2).
+
+---
+
+## `CreateProduct.tsx`
+
+- Renderiza o componente `ProductForm`.
+- Envia os dados usando `createProduct(data)`.
+
+---
+
+## `UpdateProduct.tsx`
+
+- Busca o produto pelo ID com `getProduct(id)`.
+- Renderiza `ProductForm` com os dados preenchidos.
+- Atualiza o produto via `updateProduct(data)`.
+
+---

@@ -1,32 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import AppRoutes from "./AppRoutes";
-import { loginAutomatically } from "./core/service/auth";
-import { getAll } from "./core/service/product";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./app.scss";
+import { BrowserRouter } from "react-router-dom";
 
 const App: React.FC = () => {
-  const hasRun = useRef(false); // Evita que a função rode mais de uma vez
-
-  useEffect(() => {
-    const autoLogin = async () => {
-      if (!hasRun.current) {
-        await loginAutomatically();
-        hasRun.current = true;
-      }
-    };
-
-    autoLogin();
-
-    const fetch = async () => {
-      const data = await getAll();
-      console.log(data);
-    };
-    fetch();
-  }, []);
-
   return (
-    <div className="App">
-      <AppRoutes />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <AppRoutes />
+      </div>
+    </BrowserRouter>
   );
 };
 

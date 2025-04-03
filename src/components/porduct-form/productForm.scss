@@ -1,0 +1,135 @@
+.product-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto; // centraliza
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fff;
+  border: 2px solid black;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+  .text {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      border: 2px solid #000;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 6px !important;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: purple;
+        outline: none;
+      }
+
+      &[aria-invalid="true"] {
+        border-color: red;
+      }
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.875rem;
+    }
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  textarea {
+    border: 2px solid #000;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px !important;
+    transition: border-color 0.3s ease;
+    resize: none;
+
+    &:focus {
+      border-color: purple;
+      outline: none;
+    }
+
+    &[aria-invalid="true"] {
+      border-color: red;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    .cancel-button,
+    .submit-button {
+      flex: 1 1 45%;
+      min-width: 120px;
+      text-align: center;
+      padding: 10px 15px;
+      font-weight: bold;
+      border: none;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    @media (max-width: 800px) {
+      .cancel-button,
+      .submit-button {
+        width: 70%;
+      }
+    }
+
+    .cancel-button {
+      background: #d9534f;
+      color: #fff;
+      text-decoration: none !important;
+
+      &:hover {
+        background: #b52b27;
+      }
+    }
+
+    .submit-button {
+      background-color: #00722c;
+      color: white;
+
+      &:hover {
+        background-color: #00521f;
+      }
+
+      &:disabled {
+        background-color: gray;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
